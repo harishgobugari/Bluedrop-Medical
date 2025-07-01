@@ -1,5 +1,6 @@
 {{ config(materialized='table', schema='bluedropmedical') }}
 
+
 WITH delivery_times AS (
     SELECT
         delivery_id,
@@ -7,14 +8,6 @@ WITH delivery_times AS (
         MAX(CASE WHEN event_type = 'DELIVERY_STARTED' THEN event_time END) AS delivery_started_time,
         MAX(CASE WHEN event_type = 'PACKAGE_DELIVERED' THEN event_time END) AS package_delivered_time
     FROM {{ source('bigquery_raw', 'delivery_events') }}
-    
-    -- Apply retailer_id filter if provided
-    WHERE
-        {% if var('retailer_id', None) %}
-            retailer_id = '{{ var('retailer_id') }}'
-        {% else %}
-            1=1 -- Include all retailers
-        {% endif %}
     GROUP BY delivery_id, retailer_id
 ),
 
@@ -63,4 +56,12 @@ SELECT
     COUNTIF(delivery_event_status = 'delivered_only') AS delivered_only_deliveries,
     COUNTIF(delivery_event_status = 'missing') AS missing_event_deliveries
 FROM delivery_metrics
+
+-- Apply retailer_id filter if provided
+WHERE
+    {% if var('retailer_id', None) %}
+        retailer_id = '{{ var('retailer_id') }}'
+    {% else %}
+        1=1 -- Include all retailers
+    {% endif %}
 GROUP BY retailer_id, week_start
