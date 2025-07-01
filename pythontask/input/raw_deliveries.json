@@ -1,0 +1,16 @@
+[
+ {
+ "trackingId": "A123",
+ "retailer": "retailX",
+ "events": [
+ {"type": "DELIVERY_STARTED", "timestamp": "2024-06-12T10:00:00Z"},
+ {"type": "PACKAGE_DELIVERED", "timestamp": "2024-06-12T10:32:00Z"} ],
+ "scheduled_time": "2024-06-12T10:15:00Z"
+ },
+ {
+ "trackingId": "A124",
+ "retailer": "retailX",
+ "events": [],
+ "scheduled_time": "2024-06-12T11:00:00Z"
+ }
+]

@@ -1,0 +1,3 @@
+delivery_id,retailer,scheduled_time,start_time,delivered_time,delivery_duration_minutes,delivery_status
+A123,retailX,2024-06-12T10:15:00Z,2024-06-12T10:00:00Z,2024-06-12T10:32:00Z,32,late
+A124,retailX,2024-06-12T11:00:00Z,,,,missing
