@@ -1,8 +1,6 @@
 
 ---
 
-## 🧩 Part Breakdown
-
 ### ✅ Part 1: Architecture Design
 - **Location:** `system_design.pdf`
 
